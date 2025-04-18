@@ -1,0 +1,112 @@
+Install Dev Depedencies:
+- `tailwindcss-icons`: for icons
+- `material-symbols`: for iconify
+- `browser-sync`: for hot reload
+- `concurrently`: for running multiple commands at once
+- `prettier`: for code formatting
+- `prettier-plugin-tailwindcss`: for tailwindcss formatting
+- `tailwindcss`: itself
+
+## OLD ##
+npm install --save-dev @egoits/tailwindcss-icons @iconify-json/material-symbols browser-sync concurrently prettier prettier-plugin-tailwindcss tailwindcss
+
+## NEW ##
+npm install --save-dev \
+    tailwindcss \
+    @tailwindcss/cli
+    @iconify-json/material-symbols \
+    @iconify/tailwind4 \
+    prettier-plugin-tailwindcss \
+    prettier \
+    browser-sync \
+    concurrently
+
+
+
+
+SETUP Tailwind
+    buat folder src, isinya input.css, trs @import "tailwindcss";
+
+SETUP Working Directory
+    buat folder dist, isinya assets/(css(output.css->main.css)/images/js) dan index.html
+
+SETUP Prettier
+    buat file .prettierc trs isi dengan {"plugins": ["prettier-plugin-tailwindcss"]} gunanya biar auto sortir class tailwind
+
+SETUP Scripts
+    "test": "echo \"Error: no test specified\" && exit 1"
+        Skrip ini biasanya digunakan untuk menjalankan pengujian (testing) pada aplikasi.
+        Saat ini, skrip ini hanya menampilkan pesan error "Error: no test specified" ke konsol dan kemudian keluar dengan kode error 1, yang menandakan bahwa tidak ada pengujian yang spesifik didefinisikan.
+        Biasanya, jika proyek memiliki konfigurasi pengujian (misalnya menggunakan Jest, Mocha, dll.), perintah di sini akan menjalankan test runner tersebut.
+
+    "dev": "concurrently \"browser-sync start --server dist --files dist --port 3000\" \"npx tailwindcss -i src/input.css -o dist/assets/css/main.css --watch\" "
+        Skrip ini digunakan untuk menjalankan development environment (lingkungan pengembangan).
+        concurrently: Ini adalah sebuah package yang memungkinkan menjalankan beberapa perintah secara bersamaan. Dalam kasus ini, ada dua perintah yang dijalankan:
+            "browser-sync start --server dist --files dist --port 3000": Perintah ini menjalankan browser-sync.
+                start --server dist: Menjalankan server lokal yang menghidangkan konten dari folder dist.
+                --files dist: Mengawasi perubahan pada file-file di dalam folder dist. Jika ada perubahan, browser-sync akan secara otomatis me-reload browser.
+                --port 3000: Menentukan port yang akan digunakan oleh server lokal, yaitu port 3000. Kamu bisa mengakses aplikasi kamu di http://localhost:3000.
+            "npx tailwindcss -i src/input.css -o dist/assets/css/main.css --watch": Perintah ini menjalankan Tailwind CSS CLI (melalui npx).
+                tailwindcss: Memanggil command-line interface dari Tailwind CSS.
+                -i src/input.css: Menentukan file input CSS utama (biasanya berisi @tailwind base, @tailwind components, dan @tailwind utilities).
+                -o dist/assets/css/main.css: Menentukan file output CSS yang akan dihasilkan, yang akan disimpan di folder dist/assets/css/ dengan nama main.css.
+                --watch: Membuat Tailwind CSS terus memantau perubahan pada file input dan file konfigurasi Tailwind CSS. Setiap kali ada perubahan, Tailwind CSS akan secara otomatis membangun ulang file CSS output.
+        Jadi, skrip dev ini akan menjalankan server lokal untuk melihat hasil pengembangan secara langsung di browser dan secara otomatis mengawasi perubahan pada file CSS Tailwind kamu.
+
+    "build": "npx tailwindcss -i src/input.css -o dist/assets/css/main.css --minify"
+        Skrip ini digunakan untuk membangun (build) aplikasi untuk produksi.
+        npx tailwindcss -i src/input.css -o dist/assets/css/main.css: Bagian ini sama dengan di skrip dev, yaitu menjalankan Tailwind CSS CLI untuk mengkompilasi file CSS.
+        --minify: Opsi ini akan melakukan minifikasi (mengecilkan ukuran) pada file CSS output. Ini penting untuk produksi karena dapat mengurangi ukuran file dan meningkatkan performa website.
+        Skrip build ini akan menghasilkan file CSS yang sudah siap digunakan untuk website yang akan di-deploy.
+
+
+
+
+
+        
+@plugin "@iconify/tailwind4" {
+  prefix: "iconify";
+}
+
+@theme {
+  /* Container */
+  --container-center: center;
+
+  /* Animations */
+  --animate-slide-top: slide-top 0.5s cubic-bezier(0.57, 0.14, 0, 1.07) both;
+  --animate-slide-bottom: slide-bottom 1s cubic-bezier(0.57, 0.14, 0, 1.07) both;
+  @keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+  @keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    100% {
+      -webkit-transform: translateY(100%);
+      transform: translateY(100%);
+    }
+  }
+
+  /* Font Sizes */
+  --text-icon-sm: 20px;
+  --text-icon-md: 24px;
+  --text-icon-lg: 28px;
+  --text-icon-xl: 32px;
+
+  /* Colors */
+  --color-brands-dark-green: #118871;
+  --color-brands-light-green: #15ab8e;
+
+  /* Font Families */
+  --font-sans: Inter, sans-serif;
+  --font-brand: Red Rose, serif;
+}
