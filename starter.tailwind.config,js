@@ -1,0 +1,115 @@
+// tailwind.config.js
+
+module.exports = {
+  // --- PENTING UNTUK TAILWIND CSS 4 (JIT by default) ---
+  // Pastiin path file HTML/JS/template lu bener di sini
+  // Tailwind akan nge-scan file-file di path ini buat nemuin class yang lu pake
+  content: [
+    "./src/**/*.{html,js,jsx,ts,tsx}", // Contoh kalau source code utama di folder src
+    "./*.html", // Contoh kalau ada index.html di root project
+    // Tambahin path lain kalau lu simpen file yg pake class Tailwind di folder lain
+  ],
+
+  theme: {
+    // 'extend' artinya kita NAMBAHIN atau OVEWRITE sebagian kecil dari default theme Tailwind
+    extend: {
+      // --- STARTER PACK UI/UX: COLORS ---
+      // Define palet warna dasar lu di sini. Pake nama semantic biar gampang
+      colors: {
+        // Warna Utama (buat tombol primary, background elemen penting, border, dll)
+        // Pakai format object dengan shades 50-950 dari Tailwind biar fleksibel
+        primary: {
+          DEFAULT: "#007BFF", // Ini warna default kalo lu panggil 'primary' aja
+          50: "#E6F3FF", // Shades ini bisa digenerate pake online color palette generator
+          100: "#CCEBFF",
+          200: "#99D8FF",
+          300: "#66C4FF",
+          400: "#33B0FF",
+          500: "#009CFF", // Contoh shades, sesuaikan sama warna pilihan lu
+          600: "#006EDB",
+          700: "#005BAC",
+          800: "#00497D",
+          900: "#00374F",
+          950: "#001E27",
+        },
+
+        // Warna Netral/Abu-abu (penting banget buat background, border, teks sekunder)
+        // Bagus kalo lu overwrite atau extend gray default Tailwind biar konsisten
+        gray: {
+          // Overwrite default gray biar Shades lu yg kepake
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          300: "#D1D5DB", // Bagus buat border
+          400: "#9CA3AF", // Bagus buat placeholder text
+          500: "#6B7280", // Default Tailwind Gray 500, bagus buat body text
+          600: "#4B5563",
+          700: "#374151", // Bagus buat heading text
+          800: "#1F2937",
+          900: "#111827", // Bagus buat background gelap
+          950: "#030712",
+        },
+
+        // Warna Status (buat notifikasi success, error, warning, info)
+        // Pakai nama yg jelas
+        success: "#28A745", // Hijau
+        danger: "#DC3545", // Merah (sering juga dinamai 'error')
+        warning: "#FFC107", // Kuning
+        info: "#17A2B8", // Biru kehijauan
+
+        // Optional: Tambahin warna sekunder, aksen, atau warna brand spesifik lu di sini
+        // secondary: { DEFAULT: '#6C757D', ...shades },
+        // accent: '#FF5733',
+        // brand: '#001F3F',
+      },
+
+      // --- STARTER PACK UI/UX: FONTS ---
+      // Font Family yang udah kita diskusikan. Tailwind akan generate class font-sans, font-display, dll.
+      fontFamily: {
+        sans: ["Roboto", "Open Sans", "Lato", "Inter", "sans-serif"],
+        display: ["Montserrat", "Poppins", "sans-serif"], // Buat Judul/Display
+        mono: ["Roboto Mono", "Fira Code", "Source Code Pro", "monospace"], // Buat Code
+        serif: ["Merriweather", "serif"], // Buat Serif (Opsional)
+        // brand: ['NamaFontBrandingLu', 'cursive'], // Buat Brand (Opsional)
+      },
+
+      // --- LAINNYA (OPSIONAL UNTUK STARTER) ---
+      // Tailwind udah punya nilai default yg bagus buat spacing, border-radius, shadow, dll.
+      // Untuk 'starter pack', seringkali default-nya udah cukup.
+      // Tapi kalo mau customize, extend di sini:
+
+      // spacing: { // Menambah nilai di skala spacing (padding, margin, gap, dll)
+      //   '128': '32rem', // Contoh nambahin p-128, m-128, gap-128
+      // },
+
+      // borderRadius: { // Menambah/mengubah nilai di skala rounded
+      //   '4xl': '2rem', // Contoh nambahin rounded-4xl
+      // },
+
+      // boxShadow: { // Menambah/mengubah nilai di skala shadow
+      //   'neumorphic': '5px 5px 10px #bebebe, -5px -5px 10px #ffffff', // Contoh shadow custom
+      // },
+
+      // transitionDuration: { // Mengubah durasi transisi default (misal: pas hover)
+      //   DEFAULT: '200ms', // Default Tailwind itu 150ms
+      //   '400': '400ms',
+      // },
+    },
+
+    // Kalo lu mau OVEWRITE TOTAL tema default Tailwind (jarang dipake buat starter)
+    // theme: {
+    //   colors: { // Ini akan MENGHAPUS semua warna default Tailwind dan GANTI total
+    //      'blue': '#007BFF',
+    //      'gray': '#6C757D',
+    //      // ... warna lu aja
+    //   }
+    // }
+  },
+
+  // Plugins tambahan kalau lu butuh (misal: styling form, typography, aspect ratio)
+  plugins: [
+    // require('@tailwindcss/forms'), // Buat styling element form jadi lebih gampang
+    // require('@tailwindcss/typography'), // Buat styling block teks dari markdown/CMS
+    // require('@tailwindcss/aspect-ratio'), // Buat maintain aspect ratio gambar/video
+  ],
+};
