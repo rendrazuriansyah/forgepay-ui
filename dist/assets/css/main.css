@@ -323,11 +323,26 @@
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
   }
+  .mt-\[1px\] {
+    margin-top: 1px;
+  }
+  .mt-\[64px\] {
+    margin-top: 64px;
+  }
+  .mt-\[80px\] {
+    margin-top: 80px;
+  }
+  .mt-\[86px\] {
+    margin-top: 86px;
+  }
   .mt-\[88px\] {
     margin-top: 88px;
   }
   .mt-\[92px\] {
     margin-top: 92px;
+  }
+  .mt-\[921px\] {
+    margin-top: 921px;
   }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
