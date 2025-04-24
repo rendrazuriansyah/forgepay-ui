@@ -1263,6 +1263,16 @@
       }
     }
   }
+  .peer-checked\:block {
+    &:is(:where(.peer):checked ~ *) {
+      display: block;
+    }
+  }
+  .peer-checked\:hidden {
+    &:is(:where(.peer):checked ~ *) {
+      display: none;
+    }
+  }
   .peer-invalid\:text-red-400 {
     &:is(:where(.peer):invalid ~ *) {
       color: var(--color-red-400);
